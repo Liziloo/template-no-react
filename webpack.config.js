@@ -3,7 +3,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { watchFile } = require('fs');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -20,11 +19,11 @@ const config = {
         clean: true,
     },
     devServer: {
-        watchFile: ['./src/index.html'],
+        watchFiles: ['./src/index.html'],
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            template: './src/index.html',
         }),
 
         // Add your plugins here
