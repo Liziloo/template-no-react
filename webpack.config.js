@@ -18,6 +18,7 @@ const config = {
         filename: "main.js",
         path: path.resolve(__dirname, 'dist'),
         clean: true,
+        clean: true,
     },
     devServer: {
         open: true,
@@ -27,6 +28,7 @@ const config = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
+            template: './src/index.html',
         }),
 
         // Add your plugins here
@@ -35,8 +37,16 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/i,
-                loader: 'babel-loader',
+                test: /\.(?:js|mjs|cjs)$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [
+                      ['@babel/preset-env', { targets: "defaults" }]
+                    ]
+                  }
+                }
             },
             {
                 test: /\.css$/i,
